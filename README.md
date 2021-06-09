@@ -135,6 +135,12 @@ file:
 rails db:create db:migrate db:seed
 ```
 
+> `rails db:create` creates a new Postgresql database to be associated with your
+> application based on the configuration in the `config/database.yml` file.
+> Unlike with SQLite, the actual database file isn't created in the `db` folder;
+> it lives elsewhere in your file system, depending on your Postgresql
+> configuration.
+
 Finally, edit the `app/birds_controller.rb` file and add an `index` action:
 
 ```rb
@@ -162,13 +168,13 @@ git add .
 git commit -m 'Initial commit'
 ```
 
-Next, we'll need to create an application on Heroku:
+Next, you'll need to create an application on Heroku:
 
 ```sh
 heroku create
 ```
 
-This command will generate a new application in our Heroku account, and
+This command will generate a new application in your Heroku account, and
 configure a new remote repository where you can push up your code. You can
 confirm the remote repository was created successfully by running:
 
@@ -279,6 +285,11 @@ troubleshoot:
   your application works locally and try to debug any issues on your local
   machine before re-deploying. You can also check the logs on the server by
   running `heroku logs`.
+
+For additional support, check out these guides on Heroku:
+
+- [Deploying a Rails 6 App to Heroku][heroku rails deploying guide]
+- [Rails Troubleshooting on Heroku][troubleshooting guide on heroku]
 
 ## Conclusion
 
