@@ -142,7 +142,7 @@ rails db:create db:migrate db:seed
 > Unlike with SQLite, the actual database file isn't created in the `db` folder;
 > it lives elsewhere in your file system, depending on your Postgresql
 > configuration. If you have problems with this step, see the
-> [Troubleshooting](#troubleshooting) section below.
+> **Troubleshooting** section below.
 
 Finally, edit the `app/birds_controller.rb` file and add an `index` action:
 
