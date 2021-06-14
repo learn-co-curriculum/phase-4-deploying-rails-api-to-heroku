@@ -11,16 +11,17 @@ In this lesson, we'll be deploying a basic, standalone Rails API application to
 Heroku. We'll give instructions to generate the application from scratch and
 talk through the steps to get the code running on a Heroku server.
 
-In coming lessons, we'll talk through adding more complexity to the application
+In coming lessons, we'll learn how to add more complexity to the application
 with a React frontend. Since the setup for a Rails-React application is a bit
 trickier, it'll be beneficial to see the setup for Rails alone first. Let's get
 started!
 
 ## Environment Setup
 
-To make sure you're able to deploy your application, you'll need the following:
+To make sure you're able to deploy your application, you'll need to do the
+following:
 
-### Signup for a [Heroku Account][heroku signup]
+### Sign Up for a [Heroku Account][heroku signup]
 
 You can sign up at for a free account at
 [https://signup.heroku.com/devcenter][heroku signup].
@@ -48,9 +49,10 @@ Verify which version of Ruby you're running by entering this in the terminal:
 ruby -v
 ```
 
-Make sure that the Ruby version you're running is listed in the
-[supported runtimes][] by Heroku (at the time of writing, the recommended
-version is `2.7.3`; but make sure to check the site for the latest version).
+Make sure that the Ruby version you're running is listed in the [supported
+runtimes][] by Heroku. At the time of writing, supported versions are 2.6.7,
+2.7.3, or 3.0.1. Our recommendation is 2.7.3, but make sure to check the site
+for the latest supported versions.
 
 If it's not, you can use `rvm` to install a newer version of Ruby:
 
@@ -206,7 +208,7 @@ You've successfully pushed up your code!
 ## Building and Migrating
 
 After pushing up your code, you'll notice a flurry of activity in the terminal.
-That indicates that Heroku is in the process of building your application, by:
+This indicates that Heroku is in the process of building your application, by:
 
 - Setting up a Ruby environment to run your code in
 - Installing the gems for your project with `bundle install`
@@ -229,11 +231,12 @@ server where your application was deployed. This command is very useful for
 troubleshooting: you can even run `heroku run rails c` to open a Rails console
 on the server!
 
-You can now visit the site in the browser by running `heroku open`. Navigate to
-the `/birds` endpoint and verify that you are able to see an array of JSON data
-for all the birds in the database. If you aren't able to, check out the
-troubleshooting section below, or the
-[troubleshooting guide on Heroku][troubleshooting guide on heroku].
+You can now visit the site in the browser by running `heroku open`. Note that,
+because there is no root path (`'/'`) defined in our routes, you will see a
+Page Not Found error when the app opens. Navigate to the `/birds` endpoint and
+verify that you are able to see an array of JSON data for all the birds in the
+database. If you aren't able to, check out the troubleshooting section below, or
+the [troubleshooting guide on Heroku][troubleshooting guide on heroku].
 
 ## Adding New Features
 
@@ -246,7 +249,7 @@ def show
   bird = Bird.find(params[:id])
   render json: bird
 rescue ActiveRecord::RecordNotFound
-  render json: { "Bird not found" }, status: :not_found
+  render json: "Bird not found", status: :not_found
 end
 ```
 
@@ -268,8 +271,8 @@ git push heroku main
 
 After pushing new code, Heroku will run through the build process again and
 deploy your changes. You don't have to run your migrations again since the
-database already exists on the server (you would have to run the migrations if
-you created a new migration file).
+database already exists on the server. You would have to run the migrations if
+you created a new migration file.
 
 ## Troubleshooting
 
@@ -278,7 +281,7 @@ troubleshoot:
 
 - If your app failed to deploy at the build stage, make sure your local
   environment is set up correctly by following the steps at the beginning of
-  this lesson. Check that you have the latest Ruby version, Bundler version, and
+  this lesson. Check that you have the latest versions of Ruby and Bundler, and
   ensure that Postgresql was installed successfully.
 - If you deployed successfully, but you ran into issues when you visited the
   site, make sure you migrated and seeded the database. Also, make sure that
