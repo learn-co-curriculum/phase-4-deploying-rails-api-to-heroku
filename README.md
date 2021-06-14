@@ -251,7 +251,7 @@ Then download the app from the [Postgres downloads page][] and install it.
 Launch the app and click "Initialize" to create a new server. You should now be
 able to run the migration and seed the database using the command above.
 
-[Postgres downloads page](https://postgresapp.com/downloads.html)
+[Postgres downloads page]: https://postgresapp.com/downloads.html
 
 You can now visit the site in the browser by running `heroku open`. Note that,
 because there is no root path (`'/'`) defined in our routes, you will see a
