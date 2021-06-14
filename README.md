@@ -141,7 +141,8 @@ rails db:create db:migrate db:seed
 > application based on the configuration in the `config/database.yml` file.
 > Unlike with SQLite, the actual database file isn't created in the `db` folder;
 > it lives elsewhere in your file system, depending on your Postgresql
-> configuration.
+> configuration. If you have problems with this step, see the
+> [Troubleshooting](#troubleshooting) section below.
 
 Finally, edit the `app/birds_controller.rb` file and add an `index` action:
 
@@ -231,28 +232,6 @@ server where your application was deployed. This command is very useful for
 troubleshooting: you can even run `heroku run rails c` to open a Rails console
 on the server!
 
-Note: if you run into trouble connecting to the server, you may see an error
-similar to the following when you try running the command above:
-
-```text
-psql: could not connect to server: No such file or directory
-        Is the server running locally and accepting
-        connections on Unix domain socket "/tmp/.s.PGSQL.5432"?
-```
-
-One option for solving this problem for Mac users is to install the Postgres
-app. To do this, first uninstall `postgresql`:
-
-```sh
-brew remove postgresql
-```
-
-Then download the app from the [Postgres downloads page][] and install it.
-Launch the app and click "Initialize" to create a new server. You should now be
-able to run the migration and seed the database using the command above.
-
-[Postgres downloads page]: https://postgresapp.com/downloads.html
-
 You can now visit the site in the browser by running `heroku open`. Note that,
 because there is no root path (`'/'`) defined in our routes, you will see a
 Page Not Found error when the app opens. Navigate to the `/birds` endpoint and
@@ -301,6 +280,12 @@ you created a new migration file.
 If you ran into any errors along the way, here are some things you can try to
 troubleshoot:
 
+- If you got a server connection error when you tried to run `rails db:create`,
+  one option for solving this problem for Mac users is to install the Postgres
+  app. To do this, first uninstall `postgresql` by running `brew remove
+  postgresql`. Next, download the app from the [Postgres downloads page][] and
+  install it. Launch the app and click "Initialize" to create a new server. You
+  should now be able to run `rails db:create`.
 - If your app failed to deploy at the build stage, make sure your local
   environment is set up correctly by following the steps at the beginning of
   this lesson. Check that you have the latest versions of Ruby and Bundler, and
@@ -339,3 +324,4 @@ of running these two applications together.
 [postgresql wsl]: https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database#install-postgresql
 [heroku rails deploying guide]: https://devcenter.heroku.com/articles/getting-started-with-rails6
 [troubleshooting guide on heroku]: https://devcenter.heroku.com/articles/getting-started-with-rails6#troubleshooting
+[Postgres downloads page]: https://postgresapp.com/downloads.html
