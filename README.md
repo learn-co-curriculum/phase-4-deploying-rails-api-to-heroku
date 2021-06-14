@@ -231,6 +231,28 @@ server where your application was deployed. This command is very useful for
 troubleshooting: you can even run `heroku run rails c` to open a Rails console
 on the server!
 
+Note: if you run into trouble connecting to the server, you may see an error
+similar to the following when you try running the command above:
+
+```text
+psql: could not connect to server: No such file or directory
+        Is the server running locally and accepting
+        connections on Unix domain socket "/tmp/.s.PGSQL.5432"?
+```
+
+One option for solving this problem for Mac users is to install the Postgres
+app. To do this, first uninstall `postgresql`:
+
+```sh
+brew remove postgresql
+```
+
+Then download the app from the [Postgres downloads page][] and install it.
+Launch the app and click "Initialize" to create a new server. You should now be
+able to run the migration and seed the database using the command above.
+
+[Postgres downloads page]((https://postgresapp.com/downloads.html))
+
 You can now visit the site in the browser by running `heroku open`. Note that,
 because there is no root path (`'/'`) defined in our routes, you will see a
 Page Not Found error when the app opens. Navigate to the `/birds` endpoint and
