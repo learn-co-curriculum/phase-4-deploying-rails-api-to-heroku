@@ -61,7 +61,7 @@ rvm install 2.7.3
 rvm --default use 2.7.3
 ```
 
-You should also install the latest version of `bundler` and `rails`:
+You should also install the latest versions of `bundler` and `rails`:
 
 ```sh
 gem install bundler
