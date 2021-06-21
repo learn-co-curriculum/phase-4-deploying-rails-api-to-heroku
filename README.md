@@ -84,6 +84,13 @@ To install Postgres for OSX, you can use Homebrew:
 brew install postgresql
 ```
 
+Once Postgres has been installed, run this command to start the Postgres
+service:
+
+```sh
+brew services start postgresql
+```
+
 Phew! With that out of the way, let's get started on building our Rails
 application and deploying it to Heroku.
 
@@ -282,10 +289,11 @@ troubleshoot:
 
 - If you got a server connection error when you tried to run `rails db:create`,
   one option for solving this problem for Mac users is to install the Postgres
-  app. To do this, first uninstall `postgresql` by running `brew remove
-  postgresql`. Next, download the app from the [Postgres downloads page][] and
-  install it. Launch the app and click "Initialize" to create a new server. You
-  should now be able to run `rails db:create`.
+  app. To do this, first uninstall `postgresql` by running
+  `brew remove postgresql`. Next, download the app from the
+  [Postgres downloads page][] and install it. Launch the app and click
+  "Initialize" to create a new server. You should now be able to run
+  `rails db:create`.
 - If your app failed to deploy at the build stage, make sure your local
   environment is set up correctly by following the steps at the beginning of
   this lesson. Check that you have the latest versions of Ruby and Bundler, and
@@ -324,4 +332,4 @@ of running these two applications together.
 [postgresql wsl]: https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database#install-postgresql
 [heroku rails deploying guide]: https://devcenter.heroku.com/articles/getting-started-with-rails6
 [troubleshooting guide on heroku]: https://devcenter.heroku.com/articles/getting-started-with-rails6#troubleshooting
-[Postgres downloads page]: https://postgresapp.com/downloads.html
+[postgres downloads page]: https://postgresapp.com/downloads.html
