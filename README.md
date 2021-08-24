@@ -30,14 +30,14 @@ You can sign up at for a free account at
 
 Download the Heroku CLI. For OSX users, you can use Homebrew:
 
-```sh
-brew tap heroku/brew && brew install heroku
+```console
+$ brew tap heroku/brew && brew install heroku
 ```
 
 For WSL users, run this command in the Ubuntu terminal:
 
-```sh
-curl https://cli-assets.heroku.com/install.sh | sh
+```console
+$ curl https://cli-assets.heroku.com/install.sh | sh
 ```
 
 If you run into issues installing, check out the [Heroku CLI][heroku cli]
@@ -45,8 +45,8 @@ downloads page for more options.
 
 After downloading, you can login via the CLI in the terminal:
 
-```sh
-heroku login
+```console
+$ heroku login
 ```
 
 This will open a browser window to log you into your Heroku account. After
@@ -57,8 +57,8 @@ logging in, close the browser window and return to the terminal. You can run
 
 Verify which version of Ruby you're running by entering this in the terminal:
 
-```sh
-ruby -v
+```console
+$ ruby -v
 ```
 
 Make sure that the Ruby version you're running is listed in the [supported
@@ -68,15 +68,15 @@ for the latest supported versions.
 
 If it's not, you can use `rvm` to install a newer version of Ruby:
 
-```sh
-rvm install 2.7.4 --default
+```sconsole
+$ rvm install 2.7.4 --default
 ```
 
 You should also install the latest versions of `bundler` and `rails`:
 
-```sh
-gem install bundler
-gem install rails
+```console
+$ gem install bundler
+$ gem install rails
 ```
 
 ### Install Postgresql
@@ -88,44 +88,45 @@ you'll need to set it up.
 
 #### PostgreSQL Installation for WSL
 
-To install Postgres for WSL, run the following commands from your Ubuntu terminal:
+To install Postgres for WSL, run the following commands from your Ubuntu
+terminal:
 
-```sh
-sudo apt update
-sudo apt install postgresql postgresql-contrib
+```console
+$ sudo apt update
+$ sudo apt install postgresql postgresql-contrib
 ```
 
 Then confirm that Postgres was installed successfully:
 
-```sh
-psql --version
+```console
+$ psql --version
 ```
 
-Run this command to start the Postres service:
+Run this command to start the Postgres service:
 
-```sh
-sudo service postgresql start
+```console
+$ sudo service postgresql start
 ```
 
 Finally, you'll also need to create a database user so that you are able to
 connect to the database from Rails. First, check what your operating system
 username is:
 
-```sh
-whoami
+```console
+$ whoami
 ```
 
 If your username is "ian", for example, you'd need to create a Postgres user
 with that same name. To do so, run this command to open the Postgres CLI:
 
-```sh
-sudo -u postgres -i
+```console
+$ sudo -u postgres -i
 ```
 
 From the Postgres CLI, run this command (replacing "ian" with your username):
 
-```sh
-createuser -sr ian
+```console
+$ createuser -sr ian
 ```
 
 Then enter `control + d` or type `logout` to exit.
@@ -137,15 +138,15 @@ get stuck.
 
 To install Postgres for OSX, you can use Homebrew:
 
-```sh
-brew install postgresql
+```console
+$ brew install postgresql
 ```
 
 Once Postgres has been installed, run this command to start the Postgres
 service:
 
-```sh
-brew services start postgresql
+```console
+$ brew services start postgresql
 ```
 
 Phew! With that out of the way, let's get started on building our Rails
@@ -160,8 +161,8 @@ stuck and are looking for more assistance, check that guide first.
 The first thing we'll need to do is create our new Rails application. Make
 sure you're in a non-lab directory, then run:
 
-```sh
-rails new bird-app --api --minimal --database=postgresql
+```console
+$ rails new bird-app --api --minimal --database=postgresql
 ```
 
 This will set up our app to run in API mode, with the minimum dependencies
@@ -169,8 +170,8 @@ needed, and with Postgresql as the database.
 
 `cd` into the app, and run this command:
 
-```sh
-bundle lock --add-platform x86_64-linux --add-platform ruby
+```console
+$ bundle lock --add-platform x86_64-linux --add-platform ruby
 ```
 
 This will add additional platforms to your `Gemfile.lock` file that will allow
@@ -181,8 +182,8 @@ the necessary dependencies to be installed after you deploy your app.
 Next, let's set up up a migration, model, route, and controller so that
 we have some data to display in our application:
 
-```sh
-rails g resource Bird name species
+```console
+$ rails g resource Bird name species
 ```
 
 Add this data to the `db/seeds.rb` file:
@@ -197,8 +198,8 @@ Bird.create!(name: 'Mourning Dove', species: 'Zenaida Macroura')
 Then run this command to generate the database and run the migrations and seed
 file:
 
-```sh
-rails db:create db:migrate db:seed
+```console
+$ rails db:create db:migrate db:seed
 ```
 
 > `rails db:create` creates a new Postgresql database to be associated with your
@@ -230,28 +231,23 @@ including yourself, are already familiar with.
 
 Make a commit to save your changes:
 
-```sh
-git add .
-git commit -m 'Initial commit'
+```console
+$ git add .
+$ git commit -m 'Initial commit'
 ```
 
 Next, you'll need to create an application on Heroku:
 
-```sh
-heroku create
+```console
+$ heroku create
 ```
 
 This command will generate a new application in your Heroku account, and
 configure a new remote repository where you can push up your code. You can
 confirm the remote repository was created successfully by running:
 
-```sh
-git config --list --local | grep heroku
-```
-
-You should see output like this:
-
-```txt
+```console
+$ git config --list --local | grep heroku
 remote.heroku.url=https://git.heroku.com/aqueous-sierra-44713.git
 remote.heroku.fetch=+refs/heads/*:refs/remotes/heroku/*
 ```
@@ -259,8 +255,8 @@ remote.heroku.fetch=+refs/heads/*:refs/remotes/heroku/*
 Now, deploying your code is as simple as using `git push` to upload the changes
 from your repository to Heroku:
 
-```sh
-git push heroku main
+```console
+$ git push heroku main
 ```
 
 > Note: depending on your Git configuration, your default branch might be named
@@ -287,8 +283,8 @@ it set up easily by running a few Rake commands on the server.
 
 To migrate and seed the database on the server, run:
 
-```sh
-heroku run rails db:migrate db:seed
+```console
+$ heroku run rails db:migrate db:seed
 ```
 
 When you prefix any command with `heroku run`, it will run that command on the
@@ -298,7 +294,7 @@ on the server!
 
 You can now visit the site in the browser by running `heroku open`. Note that,
 because there is no root path (`'/'`) defined in our routes, you will see a
-Page Not Found error when the app opens. 
+Page Not Found error when the app opens.
 
 Navigate to the `/birds` endpoint and verify that you are able to see an array
 of JSON data for all the birds in the database. If you aren't able to, check out
@@ -325,15 +321,15 @@ Test your code locally by running `rails s` and visiting
 
 After adding this code, make a commit:
 
-```sh
-git add app/controllers/birds_controller.rb
-git commit -m 'Added show action'
+```console
+$ git add app/controllers/birds_controller.rb
+$ git commit -m 'Added show action'
 ```
 
 Then, to deploy the changes, push the new code up to Heroku:
 
-```sh
-git push heroku main
+```console
+$ git push heroku main
 ```
 
 After pushing new code, Heroku will run through the build process again and
@@ -356,9 +352,9 @@ troubleshoot:
 
 - If you're using WSL and got the following error running `rails db:create`:
 
-    ```txt
-    PG::ConnectionBad: FATAL:  role "yourusername" does not exist
-    ```
+  ```txt
+  PG::ConnectionBad: FATAL:  role "yourusername" does not exist
+  ```
 
   The issue is that you did not create a role in Postgres for the default user
   account. Check [this video](https://www.youtube.com/watch?v=bQC5izDzOgE) for
