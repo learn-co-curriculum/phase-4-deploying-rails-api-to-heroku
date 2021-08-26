@@ -68,7 +68,7 @@ for the latest supported versions.
 
 If it's not, you can use `rvm` to install a newer version of Ruby:
 
-```sconsole
+```console
 $ rvm install 2.7.4 --default
 ```
 
