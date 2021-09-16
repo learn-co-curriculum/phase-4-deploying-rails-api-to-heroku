@@ -43,7 +43,7 @@ $ curl https://cli-assets.heroku.com/install.sh | sh
 If you run into issues installing, check out the [Heroku CLI][heroku cli]
 downloads page for more options.
 
-After downloading, you can login via the CLI in the terminal:
+After downloading, you can log in via the CLI in the terminal:
 
 ```console
 $ heroku login
@@ -387,6 +387,15 @@ practice and exposure, you'll build confidence over time.
 In the next lesson, we'll work on deploying a more complex application with a
 Rails API backend and a React frontend, and talk through some of the challenges
 of running these two applications together.
+
+## Check For Understanding
+
+Before you move on, make sure you can answer the following questions:
+
+1. When creating a new Rails app from the terminal, what additional flag do you
+   need to use to be able to deploy it on Heroku?
+2. What familiar process is used for deploying code to Heroku? How does the
+   process differ when you're deploying to Heroku vs. developing code locally?
 
 ## Resources
 
