@@ -21,20 +21,23 @@ started!
 To make sure you're able to deploy your application, you'll need to do the
 following:
 
-### Sign Up for a [Heroku Account][heroku signup]
+### Sign Up for a Heroku Account
 
 You can sign up at for a free account at
 [https://signup.heroku.com/devcenter][heroku signup].
 
-### Download the [Heroku CLI][heroku cli] Application
+### Download the Heroku CLI Application
 
-Download the Heroku CLI. For OSX users, you can use Homebrew:
+Download the [Heroku CLI][heroku cli]. This will let you run commands from your
+terminal to deploy and interact with your application on Heroku.
+
+**For OSX users**, you can use Homebrew to install the CLI:
 
 ```console
 $ brew tap heroku/brew && brew install heroku
 ```
 
-For WSL users, run this command in the Ubuntu terminal:
+**For WSL users**, run this command in the Ubuntu terminal:
 
 ```console
 $ curl https://cli-assets.heroku.com/install.sh | sh
@@ -43,7 +46,7 @@ $ curl https://cli-assets.heroku.com/install.sh | sh
 If you run into issues installing, check out the [Heroku CLI][heroku cli]
 downloads page for more options.
 
-After downloading, you can log in via the CLI in the terminal:
+After downloading, **log in to Heroku** via the CLI in the terminal:
 
 ```console
 $ heroku login
@@ -167,6 +170,11 @@ $ rails new bird-app --api --minimal --database=postgresql
 
 This will set up our app to run in API mode, with the minimum dependencies
 needed, and with Postgresql as the database.
+
+Next, we'll need to configure our `Gemfile.lock` file to support the same OS as
+Heroku, which runs Ubuntu. This way, regardless of what OS you're using in
+development, `bundler` will be able to install the same gems on Heroku using any
+Ubuntu-specific gem dependencies.
 
 `cd` into the app, and run this command:
 
